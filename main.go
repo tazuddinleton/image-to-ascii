@@ -24,10 +24,12 @@ func main() {
 		os.Exit(0)
 	}
 
+	// Todo: Accept size as argument
 	path := args[0]
 	imageToASCII(path)
 }
 
+// Todo: Move to its own package, handle other image formats
 func imageToASCII(path string) {
 	f, _ := os.Open(path)
 	g, _ := png.Decode(f)
@@ -60,16 +62,19 @@ func drawASCII(img []string) {
 	fmt.Println()
 }
 
+// Todo: Map mapVal to util packaage and rename
 func mapVal(val, inStart, inEnd, outStart, outEnd int) int {
 	slope := 1.0 * (float32(outEnd-outStart) / float32(inEnd-inStart))
 	out := float32(outStart) + slope*(float32(val)-float32(inStart))
 	return int(out)
 }
 
+// Todo: Move avg to util package and rename
 func avg(r, g, b uint32) int {
 	return int((r/256 + g/256 + b/256) / 3)
 }
 
+// Todo: Move resize to its own package
 func resize(h, w int, path, name string) {
 	file, _ := os.Open(path)
 	defer file.Close()
